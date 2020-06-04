@@ -53,4 +53,4 @@ Wait for the popup window to appear as a notification that the program has been 
 ```
 course.dis.lab
 ```
-- If course does not have any of the above sections, omit them entirely. See `addcourses.txt` for some examples.
+- If course does not have any of the above sections, omit them entirely. See `addcourses.txt` and `dropcourses.txt` for some examples.
