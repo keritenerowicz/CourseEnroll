@@ -37,10 +37,10 @@ class App:
         root = Tk()
         if self.done:
             root.title('Congratulations!')
-            logo = ImageTk.PhotoImage(Image.open('logo.jpg'))
+            logo = ImageTk.PhotoImage(Image.open('images\logo.jpg'))
         else:
             root.title('Error')
-            logo = ImageTk.PhotoImage(Image.open('logo_failed.jpg'))
+            logo = ImageTk.PhotoImage(Image.open('images\logo_failed.jpg'))
         panel = Label(root, image = logo)
         panel.pack(side = "bottom", fill = "both", expand = "yes")
         root.eval('tk::PlaceWindow . center')
