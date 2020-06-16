@@ -27,7 +27,7 @@ Install version 83.0.4103.39 of [ChromeDriver](https://chromedriver.storage.goog
 # How to Use
 - Start the program before enrollment to allow time for the user to log in. This will ensure that the user begins their enrollment process nearly as soon as it opens.
 
-Change the directory to `/CourseEnroll` and start the program
+Change the directory to inside the CourseEnroll folder and start the program
 ```
 python app.py
 ```
