@@ -22,6 +22,8 @@ Install the requirements
 pip install -r requirements.txt
 ```
 
+Install version 83.0.4103.39 of [ChromeDriver](https://chromedriver.storage.googleapis.com/index.html?path=83.0.4103.39/), and place the executable into /CourseEnroll
+
 # How to Use
 - Start the program before enrollment to allow time for the user to log in. This will ensure that the user begins their enrollment process nearly as soon as it opens.
 
