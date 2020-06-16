@@ -7,7 +7,7 @@ Automates the enrollment process for Cornell's Student Center
 ### Read Before You Use:
 - Initial courses must be added to the 'Shopping Cart' before the enrollment period opens
 - Shopping cart may not be edited while program is running
-- After login, window must be kept open, but it is able to run in the background
+- After login and term selection, window must be kept open, but it is able to run in the background
 
 # Installation
 This program was developed on python 3.6.5.
@@ -21,8 +21,6 @@ Install the requirements
 ```
 pip install -r requirements.txt
 ```
-
-Download the latest version of [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads), and place the executable into `/CourseEnroll`
 
 # How to Use
 - Start the program before enrollment to allow time for the user to log in. This will ensure that the user begins their enrollment process nearly as soon as it opens.
@@ -39,8 +37,7 @@ After logging in, keep the window open in the background. The program will run u
 Wait for the popup window to appear as a notification that the program has been completed.
 
 # TODO
-- Fix wating for enrollment to open
-- Fix term selection
+- Automate term selection, have window asking for term at start
 - Figure out why the course files aren't being read
 - Fix adds() and drops()
 - Eliminate use of shell
