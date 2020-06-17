@@ -20,31 +20,29 @@ class App:
 
 
     def __init__(self):
-        self.done = False
-        #term = self.termBox()
+        # self.term = self.termBox()
         crs = cl.CourseList()
+        self.isSuccessful = 'notYet'
         # add term argument for window
         inst = ce.Window()
-        #self.termBox()
-        self.enrCheck()
+        self.enrCheck(inst)
         self.notifyUser()
 
 
     # loops through enrollment screens until cart is empty
-    def enrCheck(self):
-        while not self.done:
-            try:
-                crs.addsDrops() # check for new courses
-                inst.enroll() # enroll courses currently in cart
-                self.done = True
-            except:
-                return
+    def enrCheck(self, ceInst):
+        try:
+            while self.isSuccessful == 'notYet':
+                # crs.addsDrops() # check for new courses
+                self.isSuccessful = ceInst.enroll() # enroll courses currently in cart
+        except:
+            isSuccessful = 'no'
 
 
     # notify user that the program is finished
     def notifyUser(self):
         root = Tk()
-        if self.done:
+        if self.isSuccessful == 'yes':
             root.title('Congratulations!')
             logo = ImageTk.PhotoImage(Image.open('images\logo.jpg'))
         else:
