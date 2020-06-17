@@ -13,6 +13,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import TimeoutException
 
 from tkinter import *
 from tkinter import messagebox
@@ -26,14 +27,12 @@ class Window(webdriver.Chrome):
     def __init__(self):
         super(Window, self).__init__()
         #self.term = term
-        self.timeout = 300
+        self.timeout = 180
         self.timeoutUser = 86400
-        self.timeoutReload = 10
         self.loaded = False
         self.login()
         self.term()
         self.waitEnrOpen()
-        self.enroll()
 
 
     # opens Student Center webpage and waits for user to log in
@@ -60,27 +59,17 @@ class Window(webdriver.Chrome):
             root.mainloop()
             while not self.elementPresent('DERIVED_REGFRM1_SSR_PB_ADDTOLIST2$9$'): # 'Enter' class nbr button
                 continue
-                '''
-                if self.term == 'Fall':
-                    pass
-                elif self.term == 'Spring':
-                    pass
-                elif self.term == 'Summer':
-                    pass
-                elif self.term == 'Winter':
-                    pass
-                '''
 
 
     # checks page until enrollment is open, then attempts an initial enroll
     def waitEnrOpen(self):
         self.click('DERIVED_REGFRM1_LINK_ADD_ENRL$82$', self.timeoutUser) # 'Proceed to Step 2 of 3' button
-
-        self.elementPresent('DERIVED_REGFRM1_SS_TRANSACT_TITLE')
-        while self.elementPresentNoWait('DERIVED_SASSMSG_ERROR_TEXT$0'): #'You do not have a valid enrollment appointment at this time.'
-            time.sleep(.1)
+        self.pageLoaded()
+        while self.elementPresentWait('DERIVED_SASSMSG_ERROR_TEXT$0', .05): # 'You do not have a valid enrollment appointment at this time.'
+            self.pageLoaded()
             self.click('DERIVED_REGFRM1_LINK_ADD_ENRL$82$', self.timeoutUser) # 'Proceed to Step 2 of 3' button
-            if self.elementPresent('DERIVED_REGFRM1_SSR_PB_SUBMIT'): # 'Finish Enrolling' button
+            self.pageLoaded()
+            if self.elementPresentWait('DERIVED_REGFRM1_SSR_PB_SUBMIT', .02): # 'Finish Enrolling' button
                 break
         self.click('DERIVED_REGFRM1_SSR_PB_SUBMIT', self.timeout) # 'Finish Enrolling' button
         self.click('DERIVED_REGFRM1_SSR_LINK_STARTOVER', self.timeout) # 'Add Another Class' button
@@ -88,18 +77,28 @@ class Window(webdriver.Chrome):
 
     # clicks through enrollment screens
     def enroll(self):
-        while True:
-            try:
-                WebDriverWait(self, self.timeout).until(EC.presence_of_element_located((By.ID, 'DERIVED_REGFRM1_SSR_PB_ADDTOLIST2$9$'))) # 'Enter' class nbr button
-                # checks for 'Class' title in shopping cart to make sure cart not empty
-                self.find_element_by_id('SSR_REGFORM_VW$srt6$0')
-                # this button disappears when shopping cart is empty, goes to generic exception
-                self.click('DERIVED_REGFRM1_LINK_ADD_ENRL$82$', self.timeout) # 'Proceed to Step 2 of 3' button
-                self.click('DERIVED_REGFRM1_SSR_PB_SUBMIT', self.timeout) # 'Finish Enrolling' button
-                self.click('DERIVED_REGFRM1_SSR_LINK_STARTOVER', self.timeout) # 'Add Another Class' button
-            except:
-                self.quit() # close window
-                return
+
+        WebDriverWait(self, self.timeout).until(EC.presence_of_element_located((By.ID, 'DERIVED_REGFRM1_SSR_PB_ADDTOLIST2$9$'))) # 'Enter' class nbr button
+
+        try:
+            # checks for 'Class' title in shopping cart to make sure cart not empty
+            self.find_element_by_id('SSR_REGFORM_VW$srt6$0')
+            # this button disappears when shopping cart is empty
+            self.click('DERIVED_REGFRM1_LINK_ADD_ENRL$82$', self.timeout) # 'Proceed to Step 2 of 3' button
+        except TimeoutException:
+            self.quit() # close window
+            return 'no'
+        except:
+            self.quit() # close window
+            return 'yes'
+
+        try:
+            self.click('DERIVED_REGFRM1_SSR_PB_SUBMIT', self.timeout) # 'Finish Enrolling' button
+            self.click('DERIVED_REGFRM1_SSR_LINK_STARTOVER', self.timeout) # 'Add Another Class' button
+            return 'notYet'
+        except:
+            self.quit() # close window
+            return 'no'
 
 
     # waits for element to load then clicks it
@@ -116,13 +115,32 @@ class Window(webdriver.Chrome):
         except:
             return False
 
-    # elementPresent without the timeout
-    def elementPresentNoWait(self, id):
+
+    def elementPresentXpath1(self, xpath):
         try:
-            self.find_element_by_id(id)
+            WebDriverWait(self, 1).until(EC.presence_of_element_located((By.XPATH, xpath)))
             return True
         except:
             return False
+
+
+    # elementPresent with a 10 sec timeout
+    def elementPresentWait(self, id, wait):
+        try:
+            WebDriverWait(self, wait).until(EC.presence_of_element_located((By.ID, id)))
+            return True
+        except:
+            return False
+
+
+    # wait for loading img to disappear
+    def pageLoaded(self):
+        try:
+            while True:
+                time.sleep(.5)
+                self.find_element_by_xpath('//*[@style="display: none; position: absolute; right: -205px; z-index: 99991; visibility: visible; top: 196.5px;"]')
+        except:
+            return
 
 
     # adds new courses through Student Center
