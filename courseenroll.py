@@ -15,8 +15,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 
-from tkinter import *
-from tkinter import messagebox
+from win10toast import ToastNotifier
 
 
 class Window(webdriver.Chrome):
@@ -30,6 +29,7 @@ class Window(webdriver.Chrome):
         self.timeout = 180
         self.timeoutUser = 86400
         self.loaded = False
+        self.toaster = ToastNotifier()
         self.login()
         self.term()
         self.waitEnrOpen()
@@ -38,6 +38,10 @@ class Window(webdriver.Chrome):
     # opens Student Center webpage and waits for user to log in
     def login(self):
         self.get('https://studentcenter.cornell.edu')
+        self.toaster.show_toast('Login',
+                                'Please log in through the opened Chrome window.',
+                                icon_path = 'images\logo.ico',
+                                duration = 10)
         while True:
             try:
                 self.switch_to_frame('ptifrmtgtframe')
@@ -51,14 +55,22 @@ class Window(webdriver.Chrome):
     def term(self):
         if self.elementPresent('win0divSSR_DUMMY_RECV1GP$0'): # 'Select a term then select Continue.'
             # alert user to select the term
-            root = Tk()
-            root.title('Select Term')
-            Label(root, text = '\n      Please select the term in the opened Chrome window, then click "Continue".      \n').grid()
-            root.eval('tk::PlaceWindow . center')
-            root.attributes("-topmost", True)
-            root.mainloop()
+            self.toaster.show_toast('Select Term',
+                                    'Please select the term in the opened Chrome window, then click "Continue".',
+                                    icon_path = 'images\logo.ico',
+                                    duration = 10)
             while not self.elementPresent('DERIVED_REGFRM1_SSR_PB_ADDTOLIST2$9$'): # 'Enter' class nbr button
                 continue
+            '''
+            if self.term == 'Fall':
+                pass
+            elif self.term == 'Spring':
+                pass
+            elif self.term == 'Summer':
+                pass
+            elif self.term == 'Winter':
+                pass
+            '''
 
 
     # checks page until enrollment is open, then attempts an initial enroll
