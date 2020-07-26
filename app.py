@@ -44,7 +44,7 @@ class App:
         root = Tk()
         if self.isSuccessful == 'yes':
             root.title('Congratulations!')
-            logo = ImageTk.PhotoImage(Image.open('images\logo.jpg'))
+            logo = ImageTk.PhotoImage(Image.open('images\logo_success.jpg'))
         else:
             root.title('Error')
             logo = ImageTk.PhotoImage(Image.open('images\logo_failed.jpg'))
