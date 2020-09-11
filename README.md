@@ -36,7 +36,7 @@ Log in through window created by CourseEnroll to both CUWebLogin and Two-Step Lo
 
 ![Image of CUWebLogin](https://github.com/keritenerowicz/CourseEnroll/blob/master/images/CUWebLogin.png)
 
-After logging in, keep the window open in the background. The program will run until the user has been enrolled in all classes in the shopping cart.
+After logging in, keep the window open in the background. The program will run until the user has been enrolled in all classes in the shopping cart. Below is what the first enrollment screen should look similar to.
 
 ![Image of EnrollmentScreen](https://github.com/keritenerowicz/CourseEnroll/blob/master/images/enroll1.png)
 
