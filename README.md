@@ -22,7 +22,7 @@ Install the requirements
 pip install -r requirements.txt
 ```
 
-Install version 83.0.4103.39 of [ChromeDriver](https://chromedriver.storage.googleapis.com/index.html?path=83.0.4103.39/), and place the executable into /CourseEnroll
+Install the latest version of [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/), and place the executable into /CourseEnroll
 
 # How to Use
 - Start the program before enrollment to allow time for the user to log in. This will ensure that the user begins their enrollment process nearly as soon as it opens.
@@ -33,6 +33,7 @@ python app.py
 ```
 
 Log in through window created by CourseEnroll to both CUWebLogin and Two-Step Login.
+
 
 After logging in, keep the window open in the background. The program will run until the user has been enrolled in all classes in the shopping cart.
 
