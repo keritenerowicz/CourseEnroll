@@ -33,17 +33,23 @@ python app.py
 ```
 
 Log in through window created by CourseEnroll to both CUWebLogin and Two-Step Login.
-
+![Image of CUWebLogin](https://github.com/keritenerowicz/CourseEnroll/blob/master/images/CUWebLogin.png)
+![Image of 2step](https://github.com/keritenerowicz/CourseEnroll/blob/master/images/2step.png)
 
 After logging in, keep the window open in the background. The program will run until the user has been enrolled in all classes in the shopping cart.
+![Image of EnrollmentScreen](https://github.com/keritenerowicz/CourseEnroll/blob/master/images/enroll1.png)
 
-Wait for the popup window to appear as a notification that the program has been completed.
+Wait for the popup window to appear as a notification that the program has been completed. One of the following notificaitons will be shown:
+![Image of Success](https://github.com/keritenerowicz/CourseEnroll/blob/master/images/logo_success.jpg)
+![Image of Failed](https://github.com/keritenerowicz/CourseEnroll/blob/master/images/logo_failed.jpg)
 
 # TODO
 - Automate term selection, have window asking for term at start
 - Figure out why the course files aren't being read
 - Fix adds() and drops()
 - Eliminate use of shell
+- Add delay when program goes faster
+- start based on EST time
 
 ### Instructions for When Add/Drop Files Work
 
