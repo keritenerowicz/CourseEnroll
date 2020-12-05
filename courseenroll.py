@@ -34,7 +34,7 @@ class Window(webdriver.Chrome):
         self.get('https://studentcenter.cornell.edu')
 
         actions = ActionChains(self)
-        actions.send_keys('kmt225' + Keys.TAB + 'CornPas12' + Keys.ENTER)
+        #actions.send_keys('netID' + Keys.TAB + 'password' + Keys.ENTER)
         actions.perform()
         """self.toaster.show_toast('Login',
                                 'Please log in through the opened Chrome window.',
