@@ -168,29 +168,3 @@ class Window(webdriver.Chrome):
                 right: -205px; z-index: 99991; visibility: visible; top: 196.5px;"]')
         except:
             return
-
-
-    """
-    Add new courses through Student Center.
-    """
-    def adds(self, courseNum):
-        self.click('DERIVED_REGFRM1_CLASS_NBR', self.timeout)
-        actions = ActionChains(driver)
-        actions.send_keys(courseNum + Keys.ENTER)
-        actions.perform()
-        # if discussion
-            # if multi discussion
-        # if lab
-            # if multi lab
-        self.click('DERIVED_CLS_DTL_WAIT_LIST_OKAY$125$', self.timeout)
-        self.click('DERIVED_CLS_DTL_NEXT_PB$280$', self.timeout)
-
-
-    """
-    Drop deleted courses through Student Center.
-    """
-    def drops(self, courseNum):
-        #beautifulsoup to find course's #th place in list
-        #beautifulsoup to find #th trash icon
-        #clickxpath('', self.timeout)
-        pass
