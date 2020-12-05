@@ -1,10 +1,3 @@
-'''
-TODO:
- - Eliminate use of shell
- - Choice window for term selection at start
-'''
-
-
 from tkinter import *
 from PIL import ImageTk, Image
 
@@ -15,31 +8,32 @@ from PyQt5.QtGui import *
 import courseenroll as ce
 import courselist as cl
 
-
 class App:
 
 
     def __init__(self):
         # self.term = self.termBox()
-        crs = cl.CourseList()
         self.isSuccessful = 'notYet'
-        # add term argument for window
-        inst = ce.Window()
+        inst = ce.Window() # add term argument for window
         self.enrCheck(inst)
         self.notifyUser()
 
 
-    # loops through enrollment screens until cart is empty
+    """
+    Loop through enrollment screens until cart is empty.
+    """
     def enrCheck(self, ceInst):
         try:
             while self.isSuccessful == 'notYet':
                 # crs.addsDrops() # check for new courses
                 self.isSuccessful = ceInst.enroll() # enroll courses currently in cart
         except:
-            isSuccessful = 'no'
+            self.isSuccessful = 'no'
 
 
-    # notify user that the program is finished
+    """
+    Notify user that the program is finished.
+    """
     def notifyUser(self):
         root = Tk()
         if self.isSuccessful == 'yes':
