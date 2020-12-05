@@ -33,13 +33,13 @@ class Window(webdriver.Chrome):
     def login(self):
         self.get('https://studentcenter.cornell.edu')
 
-        actions = ActionChains(self)
+        #actions = ActionChains(self)
         #actions.send_keys('netID' + Keys.TAB + 'password' + Keys.ENTER)
-        actions.perform()
-        """self.toaster.show_toast('Login',
+        #actions.perform()
+        self.toaster.show_toast('Login',
                                 'Please log in through the opened Chrome window.',
                                 icon_path = 'images\logo.ico',
-                                duration = 10)"""
+                                duration = 10)
         while True:
             try:
                 self.switch_to_frame('ptifrmtgtframe')
