@@ -1,9 +1,3 @@
-'''
-TODO
- - Why aren't the course files being read
-'''
-
-
 import courseenroll as ce
 
 
@@ -15,21 +9,28 @@ class CourseList:
         self.dropMes = []
 
 
-    # updates course list array
+    """
+    Update course list array.
+    """
     def updateCourses(self):
         self.addMes = open('addcourses.txt').read().split('\n')
         self.dropMes = open('dropcourses.txt').read().split('\n')
         print(self.addMes)                                              #start testing here
         print(self.dropMes)
 
-    # empty files for later detection of new inputs
+
+    """
+    Empty files for later detection of new inputs.
+    """
     def deleteContents(fileName):
         f = open(fileName, 'r+')
         f.seek(0)
         f.truncate()
 
 
-    # checks for course changes
+    """
+    Check for course changes.
+    """
     def addsDrops(self):
         self.updateCourses()
         addMes = self.addMes
