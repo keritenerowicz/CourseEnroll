@@ -4,9 +4,8 @@ from PIL import ImageTk, Image
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
-
 import courseenroll as ce
-import courselist as cl
+
 
 class App:
 
@@ -25,7 +24,6 @@ class App:
     def enrCheck(self, ceInst):
         try:
             while self.isSuccessful == 'notYet':
-                # crs.addsDrops() # check for new courses
                 self.isSuccessful = ceInst.enroll() # enroll courses currently in cart
         except:
             self.isSuccessful = 'no'
