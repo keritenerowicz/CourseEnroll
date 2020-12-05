@@ -4,3 +4,4 @@ setuptools
 image
 PyQt5
 win10toast
+python-crontab
