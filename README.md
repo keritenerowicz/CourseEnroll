@@ -44,18 +44,4 @@ Wait for the popup window to appear as a notification that the program has been 
 
 # TODO
 - Automate term selection, have window asking for term at start
-- Figure out why the course files aren't being read
-- Fix adds() and drops()
 - Eliminate use of shell
-- Add delay when program goes faster
-- start based on EST time
-
-### Instructions for When Add/Drop Files Work
-
-- List each course id (4-5 digit number) to be added to the shopping cart in the `addcourses.txt` file
-- List each course id to be dropped from the shopping cart in the `dropcourses.txt` file
-- Separate the leture, discussion, and lab sections with periods in the same line
-```
-course.dis.lab
-```
-- If course does not have any of the above sections, omit them entirely. See `addcourses.txt` and `dropcourses.txt` for some examples.
