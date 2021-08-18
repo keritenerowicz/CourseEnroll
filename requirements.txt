@@ -1,0 +1,6 @@
+selenium==3.141.59
+pypiwin32
+setuptools
+image
+PyQt5
+win10toast

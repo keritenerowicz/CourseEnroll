@@ -1,0 +1,4 @@
+*.pyc
+*.exe
+*.log
+test.py
