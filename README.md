@@ -14,11 +14,7 @@ This program was developed on python 3.6.5.
 
 Copy the repository
 ```
-<<<<<<< HEAD
-git clone https://github.com/keri-tenerowicz/CourseEnroll.git
-=======
 git clone https://github.com/keritenerowicz/CourseEnroll.git
->>>>>>> 65934a0314823969b08441b11209c1b9d155c6b5
 ```
 
 Install the requirements
