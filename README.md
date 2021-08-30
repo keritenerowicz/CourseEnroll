@@ -14,7 +14,11 @@ This program was developed on python 3.6.5.
 
 Copy the repository
 ```
+<<<<<<< HEAD
 git clone https://github.com/keri-tenerowicz/CourseEnroll.git
+=======
+git clone https://github.com/keritenerowicz/CourseEnroll.git
+>>>>>>> 65934a0314823969b08441b11209c1b9d155c6b5
 ```
 
 Install the requirements
@@ -34,14 +38,24 @@ python app.py
 
 Log in through window created by CourseEnroll to both CUWebLogin and Two-Step Login.
 
-![Image of CUWebLogin](https://github.com/keritenerowicz/CourseEnroll/blob/master/images/CUWebLogin.png)
+<p align="center">
+  <img src="https://github.com/keritenerowicz/CourseEnroll/blob/master/images/login.png" />
+</p>
 
 After logging in, keep the window open in the background. The program will run until the user has been enrolled in all classes in the shopping cart. Below is what the one of the enrollment screens should look similar to.
 
-![Image of EnrollmentScreen](https://github.com/keritenerowicz/CourseEnroll/blob/master/images/enroll1.png)
+<p align="center">
+  <img src="https://github.com/keritenerowicz/CourseEnroll/blob/master/images/enrollment.png" />
+</p>
 
-Wait for the popup window to appear as a notification that the program has been completed.
+Wait for the popup window to appear as a notification that the program has been completed. It will be one of the following.
 
-# TODO
-- Automate term selection, have window asking for term at start
-- Eliminate use of shell
+Successful:
+<p align="center">
+  <img src="https://github.com/keritenerowicz/CourseEnroll/blob/master/images/successful.png" />
+</p>
+
+Not Successful:
+<p align="center">
+  <img src="https://github.com/keritenerowicz/CourseEnroll/blob/master/images/not_successful.png" />
+</p>
