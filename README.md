@@ -17,7 +17,7 @@ Copy the repository
 git clone https://github.com/keritenerowicz/CourseEnroll.git
 ```
 
-Install the requirements
+Install the requirements in the ~/CourseEnroll directory
 ```
 pip install -r requirements.txt
 ```
