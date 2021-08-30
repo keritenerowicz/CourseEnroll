@@ -22,12 +22,12 @@ Install the requirements in the ~/CourseEnroll directory
 pip install -r requirements.txt
 ```
 
-Install the latest version of [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/), and place the executable into /CourseEnroll
+Install the latest version of [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/), and place the executable into ~/CourseEnroll
 
 # How to Use
 - Start the program before enrollment to allow time for the user to log in. This will ensure that the user begins their enrollment process nearly as soon as it opens.
 
-Change the directory to inside the CourseEnroll folder and start the program
+Change the directory to inside ~/CourseEnroll and start the program
 ```
 python app.py
 ```
