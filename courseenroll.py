@@ -17,6 +17,8 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from win10toast import ToastNotifier
 
+import config
+
 
 class Window(webdriver.Chrome):
 
@@ -31,7 +33,6 @@ class Window(webdriver.Chrome):
     textAddClasses = 'DERIVED_REGFRM1_SS_TRANSACT_TITLE'
     textError = 'DERIVED_SASSMSG_ERROR_TEXT$0'
 
-
     def __init__(self):
         super(Window, self).__init__()
         self.timeout = 400
@@ -42,25 +43,24 @@ class Window(webdriver.Chrome):
         self.isSuccessful = 'notYet'
         self.toaster = ToastNotifier()
         self.login()
-        #self.term()
+        self.term()
         self.checkTime()
         self.waitEnrOpen()
         self.enrCheck()
         self.notify()
 
-
     def login(self):
         """Opens Student Center webpage and wait for user to log in."""
         self.get('https://studentcenter.cornell.edu')
-        """
         actions = ActionChains(self)
-        actions.send_keys('net123' + Keys.TAB + 'password' + Keys.ENTER)
+        actions.send_keys(config.un + Keys.TAB + config.pw + Keys.ENTER)
         actions.perform()
         """
         self.toaster.show_toast('Login',
                                    'Please log in through the opened Chrome window.',
                                    icon_path='images\logo.ico',
                                    duration=10)
+        """
         while True:
             try:
                 self.switch_to_frame('ptifrmtgtframe')
@@ -68,7 +68,6 @@ class Window(webdriver.Chrome):
             except:
                 continue
         self.click(Window.buttonEnroll, self.timeout)
-
 
     def term(self):
         """Pauses program while user selects term."""
@@ -80,14 +79,12 @@ class Window(webdriver.Chrome):
             while not self.elementPresent(Window.buttonEnter):
                 continue
 
-
     def checkTime(self):
         """Pauses program until start time."""
         now = datetime.now()
         while(now.strftime("%H:%M:%S") != self.startTime):
             now = datetime.now()
             print(now.strftime("%H:%M:%S"))
-
 
     def waitEnrOpen(self):
         """Checks cart is not empty, then begin enroll cycle."""
@@ -129,7 +126,6 @@ class Window(webdriver.Chrome):
             self.quit()
             return 'no'
 
-
     def enrCheck(self):
         """Loop through enrollment screens until cart is empty."""
         try:
@@ -138,7 +134,6 @@ class Window(webdriver.Chrome):
         except:
             self.isSuccessful = 'no'
 
-    
     def notify(self):
         """Notify user that the program is finished."""
         self.root = Tk()
@@ -156,34 +151,34 @@ class Window(webdriver.Chrome):
         self.root.after_idle(self.root.attributes, '-topmost', False)
         self.root.mainloop()
 
-
     def click(self, id, timeout):
         """Waits for element to load then click it."""
         try:
-            WebDriverWait(self, timeout).until(EC.presence_of_element_located((By.ID, id)))
+            WebDriverWait(self, timeout).until(
+                EC.presence_of_element_located((By.ID, id)))
             self.find_element_by_id(id).click()
         except:
-            WebDriverWait(self, timeout).until(EC.presence_of_element_located((By.ID, id)))
+            WebDriverWait(self, timeout).until(
+                EC.presence_of_element_located((By.ID, id)))
             self.find_element_by_id(id).click()
-
 
     def elementPresent(self, id):
         """Returns boolean saying whether an element exists on a page."""
         try:
-            WebDriverWait(self, self.timeout).until(EC.presence_of_element_located((By.ID, id)))
+            WebDriverWait(self, self.timeout).until(
+                EC.presence_of_element_located((By.ID, id)))
             return True
         except:
             return False
-
 
     def elementPresentWait(self, id, wait):
         """elementPresent with a given timeout in seconds."""
         try:
-            WebDriverWait(self, wait).until(EC.presence_of_element_located((By.ID, id)))
+            WebDriverWait(self, wait).until(
+                EC.presence_of_element_located((By.ID, id)))
             return True
         except:
             return False
-
 
     def loadPage(self):
         """Waits for loading image to disappear."""
@@ -194,7 +189,6 @@ class Window(webdriver.Chrome):
                 right: -205px; z-index: 99991; visibility: visible; top: 196.5px;"]')
         except:
             return
-
 
     def windowOpen(self):
         """Returns boolean to check if window is stil open."""

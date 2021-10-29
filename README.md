@@ -27,7 +27,15 @@ Install the latest version of [ChromeDriver](https://sites.google.com/a/chromium
 # How to Use
 - Start the program before enrollment to allow time for the user to log in. This will ensure that the user begins their enrollment process nearly as soon as it opens.
 
-Change the directory to inside ~/CourseEnroll and start the program
+Change the directory to inside ~/CourseEnroll.
+
+Make a config.py file in the same directory with user info:
+```
+un = 'netID'
+pw = 'password'
+```
+
+Start the program
 ```
 python app.py
 ```
